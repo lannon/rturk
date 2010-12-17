@@ -39,8 +39,8 @@ module RTurk
         h
       end
 
-      def all_reviewable
-        RTurk.GetReviewableHITs.hit_ids.inject([]) do |arr, hit_id|
+      def all_reviewable(page_number = 1)
+        RTurk.GetReviewableHITs(:page_number => page_number).hit_ids.inject([]) do |arr, hit_id|
           arr << new(hit_id); arr
         end
       end
